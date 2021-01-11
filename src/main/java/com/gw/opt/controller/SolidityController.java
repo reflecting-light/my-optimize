@@ -3,10 +3,13 @@ package com.gw.opt.controller;
 
 import com.gw.opt.bean.AssemblyCode;
 import com.gw.opt.service.impl.SoAssemblyImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,6 +19,7 @@ import java.util.List;
 
 @CrossOrigin("http://localhost")
 @RestController
+@Slf4j
 public class SolidityController {
 
     @Autowired
@@ -36,15 +40,20 @@ public class SolidityController {
     }
 
     public static boolean exec(String command) throws IOException, InterruptedException{
-//        log.info("执行脚本:"+command);
+        log.info("执行脚本:"+command);
         Process process = Runtime.getRuntime().exec(command);
+        InputStream stream = process.getInputStream();
         int exitValue = process.waitFor();
+
+        byte[] re = stream.readAllBytes();
+        System.out.println(new String(re));
         if (process != null) {
             process.destroy();
         }
         if (exitValue!=0){
             return false;
         }
+
         return true;
     }
 

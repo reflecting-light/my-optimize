@@ -8,11 +8,23 @@ import java.io.IOException;
 
 @Slf4j
 public class EvmTest {
-    /**
-     * Slf4j注解方式实现日志
-     */
+
+//    @Test
+//    public static void main(String[] args) throws IOException {
+//        SolidityController sc = new SolidityController();
+//        String c = "./src/main/resources/evm";
+//        try {sc.exec(c);
+//
+//        }catch (Exception e) {
+//            log.error(e.toString());
+//
+//        }
+////        SoAssemblyImpl saim = new SoAssemblyImpl();
+////        saim.genAssembly();
+//    }
+
     @Test
-    public static void main(String[] args) throws IOException {
+    void testEvm() {
         SolidityController sc = new SolidityController();
         String c = "./src/main/resources/evm";
         try {sc.exec(c);
@@ -21,9 +33,8 @@ public class EvmTest {
             log.error(e.toString());
 
         }
-//        SoAssemblyImpl saim = new SoAssemblyImpl();
-//        saim.genAssembly();
     }
+
 }
 
 

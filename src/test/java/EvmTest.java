@@ -1,41 +1,35 @@
+import com.gw.opt.Compile;
 import com.gw.opt.controller.SolidityController;
 
-import com.gw.opt.service.impl.SoAssemblyImpl;
+
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+
 
 @Slf4j
 public class EvmTest {
 
-//    @Test
-//    public static void main(String[] args) throws IOException {
-//        SolidityController sc = new SolidityController();
-//        String c = "./src/main/resources/evm";
-//        try {sc.exec(c);
-//
-//        }catch (Exception e) {
-//            log.error(e.toString());
-//
-//        }
-////        SoAssemblyImpl saim = new SoAssemblyImpl();
-////        saim.genAssembly();
-//    }
+
 
     @Test
-    void testEvm() {
-        SolidityController sc = new SolidityController();
-        String c = "./src/main/resources/evm";
-        try {sc.exec(c);
+    void testEvm() throws IOException, InterruptedException {
+        Compile compile = new Compile();
+        String evm = "./src/main/resources/evm";
+        String solc = "./src/main/resources/solc --bin-runtime test.sol";
+        compile.genByteCode(solc);
+//        byte[] bytecode = compile.exec(solc);
+//
+//        Path path = FileSystems.getDefault().getPath("./");
+//
+//        byte[] asm = compile.exec(evm);
+//        System.out.println(new String(re));
 
-        }catch (Exception e) {
-            log.error(e.toString());
 
-        }
     }
 
+
 }
-
-
-

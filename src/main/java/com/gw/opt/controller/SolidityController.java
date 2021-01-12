@@ -39,22 +39,6 @@ public class SolidityController {
         return sai.genAssembly();
     }
 
-    public static boolean exec(String command) throws IOException, InterruptedException{
-        log.info("执行脚本:"+command);
-        Process process = Runtime.getRuntime().exec(command);
-        InputStream stream = process.getInputStream();
-        int exitValue = process.waitFor();
 
-        byte[] re = stream.readAllBytes();
-        System.out.println(new String(re));
-        if (process != null) {
-            process.destroy();
-        }
-        if (exitValue!=0){
-            return false;
-        }
-
-        return true;
-    }
 
 }

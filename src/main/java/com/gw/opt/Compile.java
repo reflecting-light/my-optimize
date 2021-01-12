@@ -1,16 +1,25 @@
 package com.gw.opt;
 
+import com.gw.opt.bean.AssemblyCode;
+import com.gw.opt.controller.SolidityController;
+import com.gw.opt.service.impl.SoAssemblyImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @Slf4j
 public class Compile {
+    @Autowired
+    SoAssemblyImpl sc ;
 
     public byte[] exec(String command) throws IOException, InterruptedException{
         log.info("执行脚本:"+command);
@@ -36,16 +45,49 @@ public class Compile {
         return null;
     }
 
-    public String genByteCode(String commond) throws IOException, InterruptedException {
-//        Path path = FileSystems.getDefault().getPath("./");
-        byte[] bytecode = this.exec(commond);
-//        return this.bytesToHex(bytecode);
+    public void genByteCode(String command, String arg) throws IOException, InterruptedException {
 
-        return new String(bytecode);
-
+        byte[] re = this.exec(command+arg);
+        String bytecode = new String(re).split("\n")[3];
+        Path path = FileSystems.getDefault().getPath("./");
+        writeTempFile(bytecode, arg);
 
     }
 
+    public List<AssemblyCode> genAssemblyCode(String command, String arg) throws IOException, InterruptedException {
+        List<AssemblyCode> ass = new ArrayList<>();
+        byte[] re = this.exec(command+arg);
+        String asmc = new String(re);
+        ass = sc.genAssembly(true, asmc);
+        return ass;
+    }
+
+    private void writeTempFile(String bytecode, String arg){
+
+        try{
+            final Path path = Files.createTempFile(arg, ".bytecode");
+            byte[] buf = bytecode.getBytes();
+
+            Files.write(path, buf);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void deleteTempFile(String file) throws IOException {
+//        new File()
+        try{
+            final Path path = Files.createTempFile(file, ".bytecode");
+//            new Files("/tmp").listFiles();
+//            Files.
+            Files.deleteIfExists(path);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
     /**
      * 字节数组转16进制
      * @param bytes 需要转换的byte数组

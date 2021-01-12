@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
+import static com.gw.opt.ConstantProperties.EVM_COMMAND;
+import static com.gw.opt.ConstantProperties.SOLC_COMMAND;
+
 
 @Slf4j
 public class EvmTest {
@@ -18,10 +21,10 @@ public class EvmTest {
     @Test
     void testEvm() throws IOException, InterruptedException {
         Compile compile = new Compile();
-        String evm = "./src/main/resources/evm";
-        String solc = "./src/main/resources/solc --bin-runtime test.sol";
-        String str = compile.genByteCode(solc);
-        System.out.println(str);
+        compile.genByteCode(SOLC_COMMAND, "test.sol");
+        System.out.println(compile.genAssemblyCode(EVM_COMMAND, "test.sol.bytecode").toString());
+//        String str = compile.genByteCode(solc);
+//        System.out.println(str);
 //        for(String x:str){
 //            System.out.println("line"+ x);
 //        }

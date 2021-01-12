@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 @Service
 public interface Assembly {
 
-    List<AssemblyCode> genAssembly (boolean isObject) throws IOException;
-    List<List<String>> genAssembly () throws IOException;
+    List<AssemblyCode> genAssembly (boolean isObject, String file) throws IOException;
+    List<List<String>> genAssembly (String file) throws IOException;
 
 }

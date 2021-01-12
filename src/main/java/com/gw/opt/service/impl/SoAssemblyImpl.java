@@ -22,18 +22,18 @@ public class SoAssemblyImpl implements Assembly {
      * @param isObject 确定是否要调用返回对象的生成方法
      * @return
      */
-    public List<AssemblyCode> genAssembly(boolean isObject) throws IOException {
+    public List<AssemblyCode> genAssembly(boolean isObject, String f) throws IOException {
         List<AssemblyCode> ass = new ArrayList<>();
         if (!isObject){
             return ass;
         }
 
-        FileInputStream file = new FileInputStream("ase.txt");
-        InputStreamReader reader = new InputStreamReader(file);
-        BufferedReader buffReader = new BufferedReader(reader);
-        String data = "";
-
-        while((data = buffReader.readLine()) != null){
+//        FileInputStream file = new FileInputStream(f);
+//        InputStreamReader reader = new InputStreamReader(file);
+//        BufferedReader buffReader = new BufferedReader(reader);
+//        String data = "";
+        for(String data: f.split("\n")){
+//        while((data = buffReader.readLine()) != null){
             String[] arr = data.split(" ");
             AssemblyCode as = new AssemblyCode();
             if(arr.length == 3) {
@@ -58,9 +58,9 @@ public class SoAssemblyImpl implements Assembly {
      * @dev 用于测试以txt生成的汇编码列表（以三条列表形式返回）
      * @return
      */
-    public List<List<String>> genAssembly() throws IOException {
+    public List<List<String>> genAssembly(String f) throws IOException {
 
-        FileInputStream file = new FileInputStream("ase.txt");
+        FileInputStream file = new FileInputStream("f");
         InputStreamReader reader = new InputStreamReader(file);
         BufferedReader buffReader = new BufferedReader(reader);
         String data = "";

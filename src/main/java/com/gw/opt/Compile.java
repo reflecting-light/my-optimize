@@ -16,14 +16,13 @@ public class Compile {
         log.info("执行脚本:"+command);
         InputStream stream = null;
         Process process = null;
-        byte[] t = null;
+
         try{
             process = Runtime.getRuntime().exec(command);
             try{
                 stream = process.getInputStream();
                 byte[] re = stream.readAllBytes();
                 return re;
-
             }catch (Exception e){
                 e.printStackTrace();
             } finally {
@@ -32,11 +31,9 @@ public class Compile {
         }catch(Exception e){
             e.printStackTrace();
         } finally {
-            if (process != null) {
-                process.destroy();
-            }
+            process.destroy();
         }
-        return t;
+        return null;
     }
 
     public void genByteCode(String commond) throws IOException, InterruptedException {

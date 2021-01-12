@@ -39,8 +39,11 @@ public class Compile {
     public void genByteCode(String commond) throws IOException, InterruptedException {
 //        Path path = FileSystems.getDefault().getPath("./");
         byte[] bytecode = this.exec(commond);
-        String bc = this.bytesToHex(bytecode).split("\n")[2];
-       System.out.println(bc);
+        for(String str:this.bytesToHex(bytecode).split("\n")){
+            System.out.println("line"+ str);
+        }
+
+
     }
 
     /**

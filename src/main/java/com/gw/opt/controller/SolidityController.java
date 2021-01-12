@@ -32,12 +32,12 @@ public class SolidityController {
         return "success";
     }
 
-    @RequestMapping("/test")
-    @ResponseBody
-    public List<List<String>> test()throws Exception{
-
-        return sai.genAssembly();
-    }
+//    @RequestMapping("/test")
+//    @ResponseBody
+//    public List<List<String>> test()throws Exception{
+//
+////        return sai.genAssembly();
+//    }
 
 
 

@@ -1,4 +1,5 @@
 import com.gw.opt.Compile;
+import com.gw.opt.bean.AssemblyCode;
 import com.gw.opt.controller.SolidityController;
 
 
@@ -22,7 +23,10 @@ public class EvmTest {
     void testEvm() throws IOException, InterruptedException {
         Compile compile = new Compile();
         compile.genByteCode(SOLC_COMMAND, "test.sol");
-        System.out.println(compile.genAssemblyCode(EVM_COMMAND, "test.sol.bytecode").toString());
+        for(AssemblyCode as:compile.genAssemblyCode(EVM_COMMAND, "test.sol.bytecode")){
+            System.out.println(as.toString());
+        }
+
 //        String str = compile.genByteCode(solc);
 //        System.out.println(str);
 //        for(String x:str){

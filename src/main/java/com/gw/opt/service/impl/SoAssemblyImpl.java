@@ -32,9 +32,10 @@ public class SoAssemblyImpl implements Assembly {
 //        InputStreamReader reader = new InputStreamReader(file);
 //        BufferedReader buffReader = new BufferedReader(reader);
 //        String data = "";
-        for(String data: f.split("\n")){
+        String[] datas = f.split("\n");
+        for(int i = 1; i <= datas.length; i++){
 //        while((data = buffReader.readLine()) != null){
-            String[] arr = data.split(" ");
+            String[] arr = datas[i].split(" ");
             AssemblyCode as = new AssemblyCode();
             if(arr.length == 3) {
                 as.setPosition(arr[0]);

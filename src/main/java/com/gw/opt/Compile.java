@@ -19,8 +19,8 @@ import java.util.List;
 @Component
 @Slf4j
 public class Compile {
-    @Autowired
-    SoAssemblyImpl sc ;
+
+
 
     public byte[] exec(String command) throws IOException, InterruptedException{
         log.info("执行脚本:"+command);
@@ -50,7 +50,6 @@ public class Compile {
 
         byte[] re = this.exec(command+arg);
         String bytecode = new String(re).split("\n")[3];
-        Path path = FileSystems.getDefault().getPath("./");
         return writeTempFile(bytecode, arg);
 
 
@@ -58,6 +57,7 @@ public class Compile {
 
     public List<AssemblyCode> genAssemblyCode(String command, Path path) throws IOException, InterruptedException {
         List<AssemblyCode> ass;
+        SoAssemblyImpl sc = new SoAssemblyImpl() ;
         byte[] re = this.exec(command+path.toString());
         String asmc = new String(re);
         System.out.println(asmc);

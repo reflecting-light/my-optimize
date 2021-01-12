@@ -23,33 +23,36 @@ public class SoAssemblyImpl implements Assembly {
      * @return
      */
     public List<AssemblyCode> genAssembly(boolean isObject, String f) throws IOException {
+
+
         List<AssemblyCode> ass = new ArrayList<>();
         if (!isObject){
             return ass;
         }
 
-//        FileInputStream file = new FileInputStream(f);
-//        InputStreamReader reader = new InputStreamReader(file);
-//        BufferedReader buffReader = new BufferedReader(reader);
-//        String data = "";
-        String[] datas = f.split("\n");
-        for(int i = 1; i <= datas.length; i++){
-//        while((data = buffReader.readLine()) != null){
-            String[] arr = datas[i].split(" ");
-            AssemblyCode as = new AssemblyCode();
-            if(arr.length == 3) {
-                as.setPosition(arr[0]);
-                as.setInstruction(arr[1]);
-                as.setArg(arr[2]);
+        String[] datas = f.trim().split("\n");
+
+        try{
+            for(int i = 1; i <= datas.length; i++){
+                String[] arr = datas[i].split(" ");
+                AssemblyCode as = new AssemblyCode();
+                if(arr.length == 3) {
+                    as.setPosition(arr[0]);
+                    as.setInstruction(arr[1]);
+                    as.setArg(arr[2]);
+                }
+                else {
+                    as.setPosition(arr[0]);
+                    as.setInstruction(arr[1]);
+                    as.setArg("");
+                }
+                ass.add(as);
+                System.out.println(as.toString());
             }
-            else {
-                as.setPosition(arr[0]);
-                as.setInstruction(arr[1]);
-                as.setArg("");
-            }
-            ass.add(as);
-            System.out.println(as.toString());
+        } catch (Exception e){
+            e.printStackTrace();
         }
+
 
 
         return ass;

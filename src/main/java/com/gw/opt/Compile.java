@@ -36,12 +36,11 @@ public class Compile {
         return null;
     }
 
-    public void genByteCode(String commond) throws IOException, InterruptedException {
+    public String [] genByteCode(String commond) throws IOException, InterruptedException {
 //        Path path = FileSystems.getDefault().getPath("./");
         byte[] bytecode = this.exec(commond);
-        for(String str:this.bytesToHex(bytecode).split("\n")){
-            System.out.println("line"+ str);
-        }
+        return this.bytesToHex(bytecode).split("\n");
+
 
 
     }

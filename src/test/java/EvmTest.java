@@ -20,7 +20,11 @@ public class EvmTest {
         Compile compile = new Compile();
         String evm = "./src/main/resources/evm";
         String solc = "./src/main/resources/solc --bin-runtime test.sol";
-        compile.genByteCode(solc);
+        String [] str = compile.genByteCode(solc);
+        for(String x:str){
+            System.out.println("line"+ x);
+        }
+
 //        byte[] bytecode = compile.exec(solc);
 //
 //        Path path = FileSystems.getDefault().getPath("./");

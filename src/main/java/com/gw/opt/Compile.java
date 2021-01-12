@@ -4,6 +4,7 @@ import com.gw.opt.bean.AssemblyCode;
 import com.gw.opt.controller.SolidityController;
 import com.gw.opt.service.impl.SoAssemblyImpl;
 import lombok.extern.slf4j.Slf4j;
+import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -45,48 +46,53 @@ public class Compile {
         return null;
     }
 
-    public void genByteCode(String command, String arg) throws IOException, InterruptedException {
+    public Path genByteCode(String command, String arg) throws IOException, InterruptedException {
 
         byte[] re = this.exec(command+arg);
         String bytecode = new String(re).split("\n")[3];
         Path path = FileSystems.getDefault().getPath("./");
-        writeTempFile(bytecode, arg);
+        return writeTempFile(bytecode, arg);
+
 
     }
 
-    public List<AssemblyCode> genAssemblyCode(String command, String arg) throws IOException, InterruptedException {
-        List<AssemblyCode> ass = new ArrayList<>();
-        byte[] re = this.exec(command+arg);
+    public List<AssemblyCode> genAssemblyCode(String command, Path path) throws IOException, InterruptedException {
+        List<AssemblyCode> ass;
+        byte[] re = this.exec(command+path.toString());
         String asmc = new String(re);
         ass = sc.genAssembly(true, asmc);
         return ass;
     }
 
-    private void writeTempFile(String bytecode, String arg){
-
+    public Path writeTempFile(String bytecode, String arg){
+        Path path = null;
         try{
-            final Path path = Files.createTempFile(arg, ".bytecode");
+            path = Files.createTempFile(arg, ".bytecode");
             byte[] buf = bytecode.getBytes();
-
             Files.write(path, buf);
+            return path;
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        return path;
     }
 
-    private void deleteTempFile(String file) throws IOException {
-//        new File()
+    public boolean deleteTempFile(Path path) throws IOException {
+        if(path == null)
+            return false;
         try{
-            final Path path = Files.createTempFile(file, ".bytecode");
+            System.out.println(path.toString());
+//            final Path p = path;
 //            new Files("/tmp").listFiles();
 //            Files.
-            Files.deleteIfExists(path);
+//            Files.deleteIfExists(path);
+            Files.delete(path);
+            return true;
         } catch (IOException e){
             e.printStackTrace();
         }
-
+        return false;
     }
     /**
      * 字节数组转16进制

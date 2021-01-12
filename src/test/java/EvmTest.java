@@ -20,10 +20,11 @@ public class EvmTest {
         Compile compile = new Compile();
         String evm = "./src/main/resources/evm";
         String solc = "./src/main/resources/solc --bin-runtime test.sol";
-        String [] str = compile.genByteCode(solc);
-        for(String x:str){
-            System.out.println("line"+ x);
-        }
+        String str = compile.genByteCode(solc);
+        System.out.println(str);
+//        for(String x:str){
+//            System.out.println("line"+ x);
+//        }
 
 //        byte[] bytecode = compile.exec(solc);
 //

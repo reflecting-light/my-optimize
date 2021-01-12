@@ -60,6 +60,7 @@ public class Compile {
         List<AssemblyCode> ass;
         byte[] re = this.exec(command+path.toString());
         String asmc = new String(re);
+        System.out.println(asmc);
         ass = sc.genAssembly(true, asmc);
         return ass;
     }

@@ -1,3 +1,13 @@
-D:\library\project\国网区块链智能合约优化\optimize\src\main\java\com\gw\opt\OptApplication.java
-D:\library\project\国网区块链智能合约优化\optimize\src\main\java\com\gw\opt\bean\Solidity.java
-D:\library\project\国网区块链智能合约优化\optimize\src\main\java\com\gw\opt\controller\SolidityController.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/SolidityController.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/SoAssemblyImpl.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/AssemblyCode.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/OptApplication.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/Compile.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/Solidity.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/ConstantProperties.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/AssemblyRule.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/EVM_OP_CODE.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/AssemblyOptimize.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/Assembly.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/SlideWindow.java
+/home/ubuntu/go/src/github.com/my-optimize/src/main/java/com/gw/opt/rule/AssemblyReturn.java

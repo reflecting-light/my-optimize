@@ -1,0 +1,6 @@
+com/gw/opt/AssemblyCode.class
+com/gw/opt/EVM_OP_CODE$Counter.class
+com/gw/opt/SoAssemblyImpl.class
+com/gw/opt/EVM_OP_CODE.class
+com/gw/opt/Assembly.class
+com/gw/opt/ConstantProperties.class
